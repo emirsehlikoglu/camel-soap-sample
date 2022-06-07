@@ -36,7 +36,7 @@ public class Soap2Rest extends RouteBuilder{
 			public void process(Exchange exchange) throws Exception {
 				MessageContentsList response = (MessageContentsList) exchange.getIn().getBody();
 				CelsiusToFahrenheitResponse r = (CelsiusToFahrenheitResponse) response.get(0);
-				exchange.getIn().setBody("Temp in Farenheit: "+r.getTemperatureInFahrenheit());
+				exchange.getIn().setBody("Temp in Fahrenheit: "+r.getTemperatureInFahrenheit());
 			}
 		})
 		.to("mock:output");
