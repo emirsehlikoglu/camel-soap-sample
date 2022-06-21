@@ -8,7 +8,7 @@ Using Apache Camel and consuming SOAP web service <br />
 
 Build project: mvn clean install <br />
 Running project with Maven: mvn spring-boot:run <br />
-API Documantation: http://0.0.0.0:9090/api-doc <br />
+API Documentation: http://0.0.0.0:9090/api-doc <br />
 
 WSDL address: http://www.learnwebservices.com/services/tempconverter?wsdl <br />
 REST GET request: http://0.0.0.0:9090/convert/celsius/to/fahrenheit/num
