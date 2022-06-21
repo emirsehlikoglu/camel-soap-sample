@@ -15,7 +15,7 @@ public class RestConfig extends RouteBuilder{
 			.dataFormatProperty("prettyPrint", "true")
 			.contextPath("/")
 				.apiContextPath("/api-doc")
-					.apiProperty("api.title", "Camel2Soap")
+					.apiProperty("api.title", "CamelToSoap")
 					.apiProperty("api.version", "1.0")
 					.apiProperty("host","")
 		.enableCORS(true);

@@ -13,13 +13,25 @@ import com.learnwebservices.services.tempconverter.FahrenheitToCelsiusRequest;
 import com.learnwebservices.services.tempconverter.FahrenheitToCelsiusResponse;
 
 @Component
-public class Soap2Rest extends RouteBuilder{
+public class SoapToRest extends RouteBuilder{
 
 	@Override
 	public void configure() throws Exception {
+
+		//deadLetterChannel Route
+		/*from("direct:celsius-to-fahrenheit")
+				.errorHandler(deadLetterChannel("mock:error")
+						.maximumRedeliveries(3)
+						.redeliveryDelay(1000).backOffMultiplier(2).useOriginalMessage().useExponentialBackOff())
+				.transform(body().append(" Modified data!!!!!!"))
+				.to("mock:result");*/
 		
 		from("direct:celsius-to-fahrenheit")
 		.removeHeaders("CamelHttp*")
+				.errorHandler(deadLetterChannel("mock:error").onPrepareFailure(new MyPrepareProcessor())
+						.maximumRedeliveries(3)
+						.redeliveryDelay(1000).backOffMultiplier(2).useOriginalMessage().useExponentialBackOff())
+				.transform(body().append(" Modified data!!!!!!"))
 		.process(new Processor() {
 			@Override
 			public void process(Exchange exchange) throws Exception {
@@ -64,6 +76,15 @@ public class Soap2Rest extends RouteBuilder{
 		})
 		.to("mock:output");
 		
+	}
+
+	public static class MyPrepareProcessor implements Processor {
+
+		@Override
+		public void process(Exchange exchange) throws Exception {
+			Exception cause = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, Exception.class);
+			exchange.getIn().setHeader("************Failed because***********:", cause.getMessage());
+		}
 	}
 	
 	
