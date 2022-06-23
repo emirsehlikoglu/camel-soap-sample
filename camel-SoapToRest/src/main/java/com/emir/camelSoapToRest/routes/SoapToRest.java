@@ -1,4 +1,4 @@
-package com.rmendes.camelsoap2rest.routes;
+package com.emir.camelSoapToRest.routes;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

@@ -1,4 +1,4 @@
-package com.rmendes.camelsoap2rest.cxf;
+package com.emir.camelSoapToRest.cxf;
 
 import org.apache.camel.component.cxf.CxfEndpoint;
 import org.springframework.beans.factory.annotation.Value;

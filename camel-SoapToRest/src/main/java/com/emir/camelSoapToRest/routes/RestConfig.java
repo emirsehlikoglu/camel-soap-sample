@@ -1,4 +1,4 @@
-package com.rmendes.camelsoap2rest.routes;
+package com.emir.camelSoapToRest.routes;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;

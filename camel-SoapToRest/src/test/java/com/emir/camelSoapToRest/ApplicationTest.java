@@ -1,10 +1,10 @@
-package com.rmendes.camelsoap2rest;
+package com.emir.camelSoapToRest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CamelSoap2restApplicationTests {
+class CamelSoapToRestApplicationTests {
 
 	@Test
 	void contextLoads() {
