@@ -30,7 +30,7 @@ public class SoapToRest extends RouteBuilder{
 		.removeHeaders("CamelHttp*")
 				.errorHandler(deadLetterChannel("mock:error").onPrepareFailure(new MyPrepareProcessor())
 						.maximumRedeliveries(3)
-						.redeliveryDelay(1000).backOffMultiplier(2).useOriginalMessage().useExponentialBackOff())
+						.redeliveryDelay(100).backOffMultiplier(2).useOriginalMessage().useExponentialBackOff())
 				.transform(body().append(" Modified data!!!!!!"))
 		.process(new Processor() {
 			@Override

@@ -8,6 +8,7 @@ class CamelSoap2restApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
