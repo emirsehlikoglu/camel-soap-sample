@@ -48,11 +48,12 @@ public class SoapToRest extends RouteBuilder{
 			public void process(Exchange exchange) throws Exception {
 				MessageContentsList response = (MessageContentsList) exchange.getIn().getBody();
 				CelsiusToFahrenheitResponse r = (CelsiusToFahrenheitResponse) response.get(0);
-				exchange.getIn().setBody("Temp in Fahrenheit: "+r.getTemperatureInFahrenheit());
+				exchange.getIn().setBody("Temperature in Fahrenheit: "+r.getTemperatureInFahrenheit());
 			}
 		})
 		.to("mock:output");
-		
+
+		// rest fahrenheit to celsius
 		from("direct:fahrenheit-to-celsius")
 		.removeHeaders("CamelHttp*")
 		.process(new Processor() {
@@ -71,11 +72,16 @@ public class SoapToRest extends RouteBuilder{
 			public void process(Exchange exchange) throws Exception {
 				MessageContentsList response = (MessageContentsList) exchange.getIn().getBody();
 				FahrenheitToCelsiusResponse r = (FahrenheitToCelsiusResponse) response.get(0);
-				exchange.getIn().setBody("Temp in Celsius: "+r.getTemperatureInCelsius());
+				exchange.getIn().setBody("Temperature in Celsius: "+r.getTemperatureInCelsius());
 			}
 		})
 		.to("mock:output");
-		
+
+		/*try {
+			from("mock:error").log("Error: {body}");
+		} catch (Exception e) {
+			System.out.println(e);
+		}*/
 	}
 
 	public static class MyPrepareProcessor implements Processor {
